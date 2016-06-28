@@ -90,17 +90,34 @@ function fillLayer(layer) {
 	activeDocument.selection.fill(fillColor, ColorBlendMode.NORMAL, 70, false);
 }
 
+
 function getFontDisplay(textItemRef) {
-	return textItemRef.font + '\r' + Math.round(textItemRef.size) + ' ' + userFriendlyConstant(app.preferences.typeUnits) + ' #' + textItemRef.color.nearestWebColor.hexValue;
+	try {
+		return textItemRef.font + '\r' + Math.round(textItemRef.size) + ' ' + userFriendlyConstant(app.preferences.typeUnits) + ' #' + textItemRef.color.nearestWebColor.hexValue;
+	}
+	catch(err) {
+	    return err.message;
+	}
 }
 
 function getFontSize(textItemRef) {
-	return Math.round(textItemRef.size) + userFriendlyConstant(app.preferences.typeUnits);
+	try {
+		return Math.round(textItemRef.size) + userFriendlyConstant(app.preferences.typeUnits);
+	}
+	catch(err) {
+	    return err.message;
+	}
 }
 
 function getFontName(textItemRef) {
-	return textItemRef.font;
+	try {
+		return textItemRef.font;
+	}
+	catch(err) {
+	    return err.message;
+	}	
 }
+
 
 function include(a, obj) {
     for (var i = 0; i < a.length; i++) {
